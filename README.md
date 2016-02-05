@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/voidpp/PCA9685-driver.svg?branch=master)](https://travis-ci.org/voidpp/PCA9685-driver)
+[![Coverage Status](https://coveralls.io/repos/github/voidpp/PCA9685-driver/badge.svg?branch=master)](https://coveralls.io/github/voidpp/PCA9685-driver?branch=master)
 
 Driver for PCA9685 controller. Datasheet: https://www.adafruit.com/datasheets/PCA9685.pdf
 
