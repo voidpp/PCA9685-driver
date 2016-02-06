@@ -38,6 +38,14 @@ def value_high(val):
     return (val >> 8) & 0xFF
 
 class Device(object):
+
+    ranges = dict(
+        pwm_frequency = (24, 1526),
+        led_number = (0, 15),
+        led_value = (0, 4095),
+        register_value = (0, 255),
+    )
+
     def __init__(self, address, bus_number = None, bus_interface_factory = smbus.SMBus, glober = glob.glob):
         """Creates an interface to PCA9685 device
 
@@ -56,12 +64,6 @@ class Device(object):
         self.__address = address
         self.__bus = bus_interface_factory(bus_number)
         self.__oscillator_clock = 25000000
-        self.__ranges = dict(
-            pwm_frequency = (24, 1526),
-            led_number = (0, 15),
-            led_value = (0, 4095),
-            register_value = (0, 255),
-        )
 
     @staticmethod
     def get_i2c_bus_numbers(glober = glob.glob):
@@ -104,7 +106,7 @@ class Device(object):
         return start + (led_num * 4)
 
     def __check_range(self, type, value):
-        range = self.__ranges[type]
+        range = self.ranges[type]
         if value < range[0]:
             raise DeviceException("%s must be greater than %s, got %s" % (type, range[0], value))
         if value > range[1]:
