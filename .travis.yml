@@ -1,6 +1,7 @@
 language: python
 python:
     - "2.7"
+    - "3.4"
 install: "pip install -r test_requirements.txt"
 script: nosetests --with-coverage --cover-package=pca9685_driver
 after_success:
