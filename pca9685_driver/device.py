@@ -124,12 +124,21 @@ class Device(object):
         self.write(register_low, value_low(value))
         self.write(register_low + 1, value_high(value))
 
-    def __getattr__(self, name):
-        """Generic getter for all LED PWM value"""
-        register_low = self.get_led_register_from_name(name)
+    def __get_led_value(self, register_low):
         low = self.read(register_low)
         high = self.read(register_low + 1)
         return low + (high * 256)
+
+    def get_pwm(self, led_num):
+        """Generic getter for all LED PWM value"""
+        self.__check_range('led_number', led_num)
+        register_low = self.calc_led_register(led_num)
+        return self.__get_led_value(register_low)
+
+    def __getattr__(self, name):
+        """Generic getter property handler for all LED PWM value"""
+        register_low = self.get_led_register_from_name(name)
+        return self.__get_led_value(register_low)
 
     def sleep(self):
         """Send the controller to sleep"""
