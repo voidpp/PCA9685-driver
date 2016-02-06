@@ -188,3 +188,15 @@ class Device(object):
         self.sleep()
         self.write(Registers.PRE_SCALE, reg_val)
         self.wake()
+
+    def calc_frequency(self, prescale):
+        """Calculate the frequency by the controller's prescale, specified by the PCA9685 datasheet
+
+        :param prescale: the prescale value of the controller
+        """
+        return int(round(self.__oscillator_clock / ((prescale + 1) * 4096.0)))
+
+    def get_pwm_frequency(self):
+        """Gets the frequency for all PWM output"""
+
+        return self.calc_frequency(self.read(Registers.PRE_SCALE))

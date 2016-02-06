@@ -74,3 +74,21 @@ class TestDevice(unittest.TestCase):
         # Assert
         self.assertEqual(dev.bus.values[24], 18)
         self.assertEqual(dev.bus.values[25], 4)
+
+    def test_calc_frequency(self):
+        # Arrange
+        dev = Device(0, 0, FakeSMBus)
+
+        # Act & Assert
+        self.assertEqual(dev.calc_frequency(30), 197)
+        self.assertEqual(dev.calc_frequency(5), 1017)
+
+    def test_get_pwm_frequency(self):
+        # Arrange
+        dev = Device(0, 0, FakeSMBus)
+
+        # Act
+        dev.set_pwm_frequency(197)
+
+        # Assert
+        self.assertEqual(dev.get_pwm_frequency(), 197)
