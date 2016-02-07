@@ -25,3 +25,7 @@ dev.set_pwm(5, 2047)
 # set the pwm frequency (Hz)
 dev.set_pwm_frequency(1000)
 ```
+
+Hardware environment
+--------------------
+This driver tested only with Raspberry Pi 2 and [Adafruit 16-Channel 12-bit PWM/Servo Driver](https://www.adafruit.com/products/815) 
