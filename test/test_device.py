@@ -2,7 +2,7 @@ import unittest
 
 from pca9685_driver import Device, DeviceException
 
-from .fake_smbus import FakeSMBus
+from pca9685_driver.tools.fake_smbus import FakeSMBus
 
 class TestDevice(unittest.TestCase):
 
