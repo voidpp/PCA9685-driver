@@ -7,6 +7,12 @@ Driver for PCA9685 controller. Datasheet: https://www.adafruit.com/datasheets/PC
 
 Install
 -------
+Some system packages are mandatory for `smbus-cffi`:
+```bash
+sudo apt-get install build-essential libi2c-dev i2c-tools python-dev libffi-dev
+```
+
+Now install the driver from pip
 ```bash
 pip install PCA9685-driver
 ```
